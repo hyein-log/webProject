@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+table, td {
+	border-collapse: collapse;
+}
+
+th.a {
+	background-color: navy;
+	color: white;
+}
+</style>
+<body>
+	<h1>표만들기</h1>
+	<figure>
+	<figcaption>개인정보</figcaption>
+	<table border="1">
+		<tr>
+			<th class="a">직원번호
+			</td>
+			<th class="a">이름
+			</td>
+			<th class="a">이메일
+			</td>
+		</tr>
+		<tr>
+			<td>100</td>
+			<td>홍길동</td>
+			<td>naver.com</td>
+		</tr>
+		<tr>
+			<td>200</td>
+			<td>홍길동</td>
+			<td>naver.com</td>
+		</tr>
+	</table>
+	</figure>
+	<br>
+	<hr>
+	<br>
+	<table border="1">
+	<caption>제목</caption>
+		<colgroup>
+			<col style="width: 100px;">
+			<col style="width: 300px;">
+			<col style="width: 100px;">
+			<col style="width: 300px;">
+		</colgroup>
+		<tr>
+			<th>이름</th>
+			<td>김혜인</td>
+			<th>연락처</th>
+			<td>010-2345-2233</td>
+		</tr>
+		<tr>
+			<th>주소</th>
+			<td colspan="3"></td>
+		</tr>
+		<tr>
+			<th rowspan="2">자기소개</th>
+			<td colspan="3">html</td>
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+		</tr>
+		<tr>
+			<th>숫자</th>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+		</tr>
+		<tr>
+			<th>영어</th>
+			<td>a</td>
+			<td>b</td>
+			<td>c</td>
+		</tr>
+		<tr>
+			<th>숫자</th>
+			<td rowspan = "2">1</td>
+			<td>2</td>
+			<td>3</td>
+		</tr>
+		<tr>
+			<th>숫자</th>
+			<td rowspan = "2">1</td>
+			<td>2</td>
+			<td>3</td>
+		</tr>
+	</table>
+
+</body>
+</html>

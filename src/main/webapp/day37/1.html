@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+ul {
+	/* 태그 선택자 실습 */
+	color: blue;
+	list-style: none;
+	border: 1px solid green;
+	padding: 10px;
+}
+
+li {
+	border: 1px solid gray;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+p {
+	fort-size: 20px;
+	/* margin-left: 10px; */
+	/* margin-top: 20px; */
+	/* margin-right: 10px; */
+	/* margin-bottom: 20px; */
+	margin: 20px 10p 20px 10px;
+	/* border-width: 1px; */
+	/* border-style: solid; */
+	/* border-color: green; */
+	border: 1px solid green;
+	padding: 10px;
+	margin: 10px;
+}
+
+.aa {
+	background-color: pink;
+}
+
+li.aa {
+	font-size: 30px;
+}
+
+#bb {
+	background-color: skyblue;
+}
+
+#container {
+	border: 5px dotted gray;
+	width: 500;
+	height: 500;
+	margin: 0 auto;
+}
+h1, h2{
+text-align: center;
+}
+</style>
+<link href="../css/external.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<body>
+	<div id="container">
+		<img  src="../images/umbrella.jpg" alt="우산">
+		<h1>세계 3대 미항</h1>
+		<ul>
+			<!--  html주석 : html tag에서 style ==> inline css -->
+			<li>시드니(Sydney), 호주</li>
+			<li>리우데자네이루(Rio de Janeiro), 브라질</li>
+			<li class="aa">나폴리(Naples), 이탈리아</li>
+		</ul>
+
+		<h1>블루베리와 항산화 효능</h1>
+		<p class="aa" style="color: blue;">블루베리는 항산화제인 안토시아닌과 폴리페놀을 다량
+			포함하고 있습니다.</p>
+		<p id=bb> 매사츄세츠 보스톤에 있는 USDA 노화에 관한 인류 영양 연구센터 (the USDA Human
+			Nutrition Research Center on Aging) 의 자료에 의하면 블루베리는 과일 중에서 가장 항산화 작용이
+			뛰어난 과일이라고 합니다. </p>
+
+	</div>
+</body>
+
+</body>
+</html>

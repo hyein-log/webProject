@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+ *{border :1px solid gray;
+ padding: 10px;
+ border-collapse: collapse;
+ }
+ div p {
+ background-color: orange;}
+ /* selector 사이의 빈칸 : 자손을 의미, 연결연산자*/
+ section p{color:red;}
+ /*  >는 자식을 의미 */
+ section > p {font-size: 20px}
+</style>
+</head>
+<body>
+	<section>
+		<p>11장 선택자들 연습</p>
+		<p>11장 선택자들 연습</p>
+		<p>11장 선택자들 연습</p>
+		<div><p>section..div..11장 선택자들 연습</p></div>
+	</section>
+	<p>단독 ..11장 선택자들 연습</p>
+	<div><p>div..11장 선택자들 연습</p></div>
+</body>
+</html>

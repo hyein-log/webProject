@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+*{
+margin: 0;
+padding: 0;
+}
+div{
+border:1px solid red;
+width: 300px;
+height: 100px;
+padding: 10px;
+margin: 20px;
+}
+span{
+border:1px solid gray;
+}
+.box1{
+box-sizing: border-box; /*width가 content+padding 을 의미*/
+}
+.box2{
+box-sizing: content-box; /*width가 content 만을 의미*/
+}
+p{border:1px solid gray;}
+.p1{width:500px; height: 200px;}
+.p2{width:500px; height: 200px;}
+</style>
+</head>
+<body>
+<div class = "box1">box1</div>
+<div class = "box2">box2</div>
+<div>
+<span>box3-1</span>
+<span>box3-2</span>
+<p>box3-3</p>
+<img alt = "" src = "../images/tick.png">
+<a href = "http://www.naver.com">다음사이트이동</a>
+<a href = "http://www.w3shools.com">w3shools</a>
+<strong>css연습</strong>
+</div>
+<p class="p1">p1</p>
+<p class="p2">p2</p>
+</body>
+</html>
