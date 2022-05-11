@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+span{
+width :30px; display:inline-block;
+}
+</style>
+</head>
+<body>
+<h1>반복문</h1>
+<hr>
+<button id = "btn1">배열사용하기</button>
+<button id = "btn2">for of</button>
+<button id = "btn3">LAB1 직각삼각형모양</button>
+<button id = "btn4">LAB2 continue</button>
+<button id = "btn5">LAB3 break</button>
+<hr>
+<div id="here">여기</div>
+<script type="text/javascript">
+btn5.onclick = function(){
+	var output = "";
+	here.innerHTML +="<br>"
+	
+	for(let i =2; i<10; i++){
+		if(i==4)break;
+		for(let j=1; j<=9; j++){
+			
+			output +=`${i} * ${j} = <span>${i*j}</span>`;
+		}
+		output +="<br>"
+	}
+	here.innerHTML += output;
+};
+
+
+btn4.onclick = function(){
+	var output = "";
+	here.innerHTML +="<br>"
+	for(let i =2; i<10; i++){
+		for(let j=1; j<=9; j++){
+			if(i==4)continue;
+			output +=`${i} * ${j} = <span>${i*j}</span>`;
+		}
+		output +="<br>"
+	}
+	here.innerHTML += output;
+};
+
+btn3.onclick = function(){
+	var inputdata = prompt("숫자를 입력하세요.", "");
+	var star = "*";
+	var output = "";
+	here.innerHTML +="<br>"
+	for(let i =0; i<inputdata; i++){
+		for(let j=0; j<=i; j++){
+			output +=star
+		}
+		output +="<br>"
+	}
+	here.innerHTML += output;
+};
+
+
+btn2.onclick = function(){
+	var arr = [100,99,92,39,65];
+	for(let i in arr){
+		here.innerHTML +="<br>"+i +"==>"+arr[i];
+	}
+	for(let i of arr){
+		here.innerHTML +="<br>"+i +"==>"+arr[i];
+	}
+};
+
+btn1.onclick = function(){
+	var arr = [100, 'javascript', 10>20, {name:'홍길동', age:20},[100,99,92], score, function(){alert("함수입니다.");}];
+	var score = 100;
+	
+	for(let i in arr){
+		here.innerHTML += "<br>" + i +"번째==> "+typeof(arr[i])+" , "+arr[i];
+		if(typeof(arr[i])=="function"){
+			arr[i]();
+		}
+	}
+};
+</script>
+</body>
+</html>

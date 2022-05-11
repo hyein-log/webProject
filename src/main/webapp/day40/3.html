@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+	margin: 10px;
+	border: 1px solid lightskyblue;
+	padding: 10px;
+}
+</style>
+<script>
+	//호이스팅 : var ,function() 선언 맨먼저 수행
+	alert("global v1=" + v1);
+	call2();
+
+	var v1 = 1000;
+	function f() {
+		obj = document.querySelector("#here");
+	}
+	// 	window.onlod = function() {
+	// 		obj = document.querySelector("#here");
+	// 	}
+
+	function call1() {
+
+		var a = 10;
+		var b = "자바스크립트";
+		here.innerHTML = "a=" + a; //document.querySelector 안해줘도 아이디는 찾아줌
+		//근데 이렇게하면 오류가 날 확률이 크기 때문에 정석으로 사용하는 것이 좋음
+		obj.innerHTML = "a=" + a + "<br>b=" + b;
+		//백틱 `` :이클립스 내부브라우저 지원안됨
+		//obj.innerHTML = `a=${a} <br> b =${b}`;
+	}
+	function call2() {
+		//자바스크립트는 호이스팅을 함
+		//호이스팅 : var로 선언된 변수들을 함수의 맨 위로 올린다(즉, 먼저수행)
+		obj.innerHTML = a;
+		var a = 100;
+		obj.innerHTML += "<br>" + a;
+		var a = 200;
+		obj.innerHTML += "<br>" + a;
+	}
+	function call2() {
+
+		alert(" <br> call2함수추가");
+	}
+	function call3(){
+		var num1 =10;
+		num2 = 20; //전역변수
+		for(var num3=1; num3<=num1; num3++){ //for문을 수행하고 나면 num3도 전역변수가 됨
+			obj.innerHTML+="<br>num3 = "+num3;
+		}
+		obj.innerHTML+="<br>loop 이후에 num3 = "+num3; //지역변수는 함수안에서 유효한 것이기 때문에 num3는 11이라고 나옴
+		
+	}
+	function call4(){
+		obj.innerHTML=num2+num3;
+	}
+	function call5(){
+		const MAX = 1000;
+		obj.innerHTML+= MAX;
+		alert("max는 \"!!"+MAX);
+	}
+</script>
+</head>
+<body onload="f();">
+	<h1>javascript변수와 함수 사용</h1>
+	<hr>
+	<button onclick="call1();">변수 선언, 백틱사용</button>
+	<button onclick="call2();">호이스팅</button>
+	<button onclick="call3();">의도하지 않은 전역변수</button>
+	<button onclick="call4();">의도하지 않은 전역변수 접근</button>
+	<button onclick="call5();">상수(변하지 않는 값)</button>
+	<div id="here">여기</div>
+</body>
+</html>

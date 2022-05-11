@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<hr>
+	<h1>3장 조건문 1</h1>
+	<h1>3장 조건문 2</h1>
+	<button id="btn1">동적 element 생성</button>
+	<button id="btn2">제목수정</button>
+	<button id="btn3">LAB1..양수 음수 구분</button>
+	<button id="btn4">LAB2..짝수 홀수 구분</button>
+	<button id="btn5">LAB3..성적 평균 구분</button>
+	<button id="btn6">LAB3..성적 평균 구분 switch</button>
+	<hr>
+	<div id="here">여기</div>
+
+	<script>
+	document.getElementById("btn6").onclick = function(){
+		var inputdata1 = prompt("점수를 입력하세요.", "");
+		var arr= inputdata1.split(",");
+		
+		let result;
+		var total =0;
+		for(let index in arr){
+			total += parseInt(arr[index]);
+		}
+		var data = total/arr.length;
+		var agv= Math.floor(data);
+		switch (agv) {
+		case agv>=90:
+			result = "A";
+			break;
+		case agv>=80:
+			result = "B";
+			break;
+		case agv>70:
+			result = "C";
+			break;
+		case agv>60:
+			result = "D";
+			break;
+
+		default:
+			result = "E";
+			break;
+		}
+		
+ 		document.querySelector("#here").innerHTML=`
+ 					당신의 총점은 ${total}이고,
+ 					평균은 ${agv}이고, 
+ 					성적은 ${result}입니다.
+ 		`;
+	}
+	
+	
+	document.getElementById("btn5").onclick = function(){
+		var inputdata1 = prompt("점수를 입력하세요.", "");
+		var arr= inputdata1.split(",");
+		
+		let result;
+		var total =0;
+		for(let index in arr){
+			total += parseInt(arr[index]);
+		}
+		var data = total/arr.length;
+		if(data>=90){
+			result = "A";
+		}
+		else if(data>=80){
+			result = "B";
+		}
+		else if(data>=70){
+			result = "C";
+		}
+		else if(data>=60){
+			result = "D";
+		}
+		else{
+			result = "E";
+		}
+		
+ 		document.querySelector("#here").innerHTML=`
+ 					당신의 총점은 ${total}이고,
+ 					평균은 ${data}이고, 
+ 					성적은 ${result}입니다.
+ 		`;
+	}
+	
+	
+document.getElementById("btn4").onclick = function(){
+		var inputdata = prompt("값을 입력하세요.", "");
+		let result;
+		if(inputdata%2==0){
+			result = "짝수";
+		}else{
+			result = "홀수";
+		}
+		document.querySelector("#here").innerHTML=result;
+	}
+			
+	
+document.getElementById("btn3").onclick = function(){
+	var inputdata = prompt("값을 입력하세요.", "");
+	let result;
+	if(inputdata>0){
+		result = "양수";
+	}else if(inputdata<0){
+		result = "음수";
+	}else{
+		result = "0";
+	}
+	document.querySelector("#here").innerHTML=result;
+}
+	
+document.getElementById("btn2").onclick = function(){
+	document.querySelector("h1:first-of-type").innerHTML="hello";
+}
+	
+	
+document.getElementById("btn1").onclick = function(){
+	var str = `<ul>
+<li>HTML5</li>
+<li>CSS3</li>
+<li>JAVASCRIPT</li>
+<li>JSP/SERVLET</li>
+</ul>`;
+document.querySelector("#here").innerHTML=str;
+};
+</script>
+</body>
+</html>

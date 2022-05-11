@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	//javascript 변수...var를 붙이면 지역변수 , var이 없으면 전역변수
+	var a = 10; //함수내의 변수가 아니므로 전역변수
+	b = 20;
+	function call() {
+		var c = 30; //지역변수
+		d = 40;// 전역변수
+		alert(a + b + c + d);
+	}
+	function call2(){
+		//Uncaught ReferenceError: d is not defined
+		//d는 버튼 1을 눌러서 call()이 실행되면 생기게됨
+		//Uncaught ReferenceError: c is not defined
+		//->c는 선언되지 않은 변수이다.
+		//alert(a + b + c + d);
+		d = "java";
+		alert(a + b + d);
+	}
+	function call3(){
+		alert(d);
+	}
+	function call4(){
+		
+		var v1; //undefined 선언되었지만 값은 없다.
+		document.getElementById("here").innerHTML+="<p>"+ v1+"==>"+ typeof(v1)+"</p>";
+		v1 = 10;
+		document.getElementById("here").innerHTML+="<p>"+ v1+"==>"+ typeof(v1)+"</p>";
+		v1 = 10>20;
+		document.getElementById("here").innerHTML+="<p>"+ v1+"==>"+ typeof(v1)+"</p>";
+		v1 = 3.14;
+		document.getElementById("here").innerHTML+="<p>"+ v1+"==>"+ typeof(v1)+"</p>";
+		v1= "java";
+		document.getElementById("here").innerHTML+="<p>"+ v1+"==>"+ typeof(v1)+"</p>";
+		v1 = [1,2,3,4,5]; //배열
+		document.getElementById("here").innerHTML+="<p>"+ v1+"==>"+ typeof(v1)+"</p>";
+		v1={name: 'jj', "phone":"010-1234-5678"}; //객체
+		document.getElementById("here").innerHTML+="<p>"+ v1["phone"]+"==>"+ typeof(v1)+"</p>";
+		v1 = function(){};
+		document.getElementById("here").innerHTML+="<p>"+ v1+"==>"+ typeof(v1)+"</p>";
+		
+		document.getElementsByClassName("my")[0].innerHTML += "<h2>class이름으로 접근하기</h2>";
+		document.getElementsByName("myname")[0].innerHTML+="<h2>이름으로 접근하기</h2>";
+		
+		//ECMAScript6에서 추가
+		document.querySelector("#here").innerHTML+="<h2>querySelector으로 #id 접근하기</h2>";
+		document.querySelector(".my").innerHTML+="<h2>querySelector으로 .class 접근하기</h2>";
+		document.querySelector("div[name='myname']").innerHTML+="<h2>querySelector으로 속성으로 name='myname' 접근하기</h2>";
+	}
+</script>
+</head>
+<body>
+	<h1>자바스크립스 변수</h1>
+	<hr>
+	<button onclick="call();">버튼1</button>
+	<button onclick="call2();">버튼2</button>
+	<button onclick="call3();">버튼3</button>
+	<button onclick="call4();">버튼4</button>
+	<hr>
+	<div id = "here" class = "my" name = "myname">여기</div>
+</body>
+</html>
