@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function call(){
+	here.innerHTML = "callback함수1";
+	call2(function(){return 100;});
+	call2(function(){return "java";});
+	call2(call3);
+}
+function call2(f){
+	//callback함수: 매개변수로 함수가 전달되고 전달받은 쪽에서 실행
+	here.innerHTML += "<br>"+f+"-->"+f(); //return되는 결과물을 찍은것
+}
+function call3(){
+	var a = 10;
+	var b = 20;
+	return a+b;
+}
+
+function test(){
+	//일정시간(milliseconds)이 지날때마다 어떤 기능(f)을 수행하는 함수
+	setInterval(timeDisplay, 1000); //->timedisplay()라고 해버리면 그 당시의 시간을 호출하는 거지 함수를 호출하는 것이 아니라서 시간이 가도 html에 변화가 생기지 않음.
+									//함수를 부를 것이기 때문에 함수의 이름만 줘야함
+	function timeDisplay(){
+		here.innerHTML = new Date();
+	}
+}
+function test2(){
+	//일정시간(milliseconds)이 지날때마다 어떤 기능(f)을 수행하는 함수
+	setInterval(function (){
+		here.innerHTML = new Date();
+	}, 1000); 
+	
+}
+function closer1(){
+	var result = test3();
+	here.innerHTML = result;
+	result();
+}
+function test3(){
+	var a = 10;
+	return function(){
+		here.innerHTML += "<br> a = "+ ++a;
+	};
+}
+
+function closer2(){
+	var f1 = test4(" world!");
+	var f2 = test4(" bye!");
+	//here.innerHTML = result;
+	
+	var result1 = f1();
+	var result2 = f2();
+	here.innerHTML +="<br>"+result1+"---"+result2;
+	here.innerHTML +="<br>"+f1()+"---"+f2();
+}
+function test4(param){
+	var output = "hello"+param;
+	return function(){
+		return output;
+	};
+}
+
+function test5(param){
+	var su = param;
+	return function(){
+		su++;
+		return su;
+	};
+}
+//su는 각각 영향을 주지 않는 지역변수로 남아있음
+var num_func1 = test5(0);
+var num_func2 = test5(100);
+function closer3(){
+	here.innerHTML = num_func1();
+}
+function closer4(){
+	here.innerHTML = num_func2();
+}
+
+// var add = (function(){
+// 	var num = 0;
+// 	return function(){
+// 		num++;
+// 		return num;
+// 	};
+// })(); //add를 호출하면 function안에 있는 function을 실행시켜야하므로 맨 밖에 있는 function을 내가 미리 실행시켜버림
+
+function increment(){
+	var num = 0;
+	return function(){
+		num++;
+		return num;
+	};
+}
+
+var add = increment();
+function closer5(){
+	here.innerHTML = add();
+}
+</script>
+</head>
+<body>
+<h1>함수연습</h1>
+<ol>
+<li><a href="javascript:call();">callback함수1</a></li>
+<li><a href="1.html">link(page연결)</a></li>
+<li><a href="javascript:test();">callback함수3</a></li>
+<li><a href="javascript:closer1();">closer(지역변수 사용 위배)</a></li>
+<li><a href="javascript:closer2();">closer(지역변수 사용 위배)</a></li>
+<li><button onclick="closer3();">0부터 1씩 증가</button></li>
+<li><button onclick="closer4();">100부터 1씩 증가</button></li>
+<li><button onclick="closer5();">counter</button></li>
+<li><a href="#">callback함수5</a></li>
+</ol>
+<hr>
+<div id="here">여기</div>
+</body>
+</html>
