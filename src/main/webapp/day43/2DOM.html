@@ -16,7 +16,27 @@ window.onload = function(){
 	btn3.onclick = f3;
 	btn4.onclick = f4;
 	btn5.onclick = f5;
+	btn6.onclick = f6;
+	btn7.onclick = f7;
+	btn8.onclick = f8;
+	
+	document.querySelectorAll("input[type='checkbox']").forEach(function(elt, i, array) {
+		elt.onchange = call2;
+	});
 };
+
+function call2(){
+	//alert("값이 바뀜");
+	//console.log(this.checked);
+	if(this.checked){ //this는 onchange되는 객체
+		var a = this.nextSibling;
+		console.log(a);
+		a.style.color = "red";
+	}else{
+		a = this.nextSibling;
+		a.style.color = "blue";
+	}
+}
 function f1(){
 	var element_node = document.createElement("h2");//<h2></h2>
 	console.log(element_node);
@@ -52,6 +72,7 @@ function call(){
 	here.appendChild(element_node);
 }
 function f4(){
+	//HTMLCollection : 향상for, foreach가능
 	var arr = document.getElementsByName("food");
 	arr.forEach(function(elt, i, array){
 		//alert(elt.value);
@@ -61,9 +82,56 @@ function f4(){
 	});
 }
 function f5(){
+	//NodeList type : 향상for, foreach불가
 	var arr = document.getElementsByTagName("button");
+	console.log(arr);
+// 	arr.forEach(function (elt, i, array) {
+// 		hh.innerHTML += "<br>"+elt.innerHTML;
+// 	});
+	for(var index=0;index<arr.length; index++){
+		hh.innerHTML +="<br>"+index + "---"+arr[index].innerHTML;
+	}
+}
+function f6(){
+	var arr = document.querySelectorAll("button");
+	for(var index=0;index<arr.length; index++){
+		hh.innerHTML +="<br>"+index + "---"+arr[index].innerHTML;
+	}
+	var arr = document.querySelectorAll("input[name='food']");
+	for(var index=0;index<arr.length; index++){
+		hh.innerHTML +="<br>"+index + "---"+arr[index].value;
+	}
+	var arr = document.querySelectorAll("input[name='food']");
+	for(var index=0;index<arr.length; index++){
+		if(arr[index].checked)
+		hh.innerHTML +="<hr><br>"+index + "---"+arr[index].value;
+	}
+	var arr = document.querySelectorAll("input:checked");
+	for(var index=0;index<arr.length; index++){
+		hh.innerHTML +="<hr><br>"+index + "---"+arr[index].value;
+	}
 	arr.forEach(function (elt, i, array) {
-		hh.innerHTML += "<br>"+elt.innerHTML;
+		hh.innerHTML += "<br>"+elt.value+"didi";
+	});
+}
+function f7(){
+	var arr = document.querySelectorAll("button");
+	arr.forEach(function(elt, i, array) {
+		if(i%2==0){
+			elt.style.backgroundColor = "lightpink";
+			elt.style.color = "gray";
+		}else{
+			elt.style.border = "2px solid purple";
+		}
+	});
+	
+}
+function f8(){
+	hh.parentNode.removeChild(here1);
+	
+	var arr = document.querySelectorAll("#check");
+	arr.forEach(function(elt, i, array) {
+		elt.parentNode.removeChild(elt);
 	});
 }
 </script>
@@ -75,10 +143,16 @@ function f5(){
 <button id="btn3">동적노드생성(img)</button>
 <button id="btn4">getElementsByName</button>
 <button id="btn5">getElementsTagName</button>
+<button id="btn6">querySelectorAll</button>
+<button id="btn7">스타일변경</button>
+<button id="btn8">node지우기</button>
 <hr>
 <div id = "here">여기</div>
-<input type = "checkbox" name = "food" value = "검은콩">콩
-<input type = "checkbox" name = "food" value = "샐러드">샐러드
-<input type = "checkbox" name = "food" value = "샌드위치">샌드위치
+<div id = "here1">여기</div>
+<div id = "check">
+<input type = "checkbox" name = "food" value = "검은콩" ><span>콩</span>
+<input type = "checkbox" name = "food" value = "샐러드"><span>샐러드</span>
+<input type = "checkbox" name = "food" value = "샌드위치"><span>샌드위치</span>
+</div>
 </body>
 </html>

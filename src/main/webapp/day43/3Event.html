@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+//이벤트 이름: load
+//이벤트 속성: onload
+//이벤트핸들러, 리스너 : function(){}
+window.onload = function(){
+	var flag = true;
+	document.querySelector("#header1").onclick = function(ee){
+// 		alert(this.innerHTML);
+// 		document.querySelector("#header1").onclick = null;
+		if(flag){
+		this.style.backgroundColor = "lightpink";
+		}else{
+			this.style.backgroundColor = "lightgreen";
+		}
+		flag = !flag;
+		console.dir(ee);
+		ee= ee || window.event;
+		here.innerHTML = "X= "+ee.clientX+" Y= "+ee.clientY;
+	};
+	document.querySelector("#btn1").onclick = function(){
+		header1.onclick;
+	};
+	btn2.onclick = function(){
+		console.dir(document.querySelector("#myfrm"));
+	};
+	
+	myfrm.onsubmit = function(){
+		var userid = document.querySelector("input[name = 'userid']").value.trim();
+		var userpass = document.querySelector("input[name = 'userpass']").value.trim();
+		if(userid.length==0 || userpass.length==0){
+			alert("아이디 또는 비밀번호를 입력해주세요.");
+			return false;
+		}
+		//default event return이 true임;
+	};
+};
+</script>
+</head>
+<body>
+<h1 id = "header1">header1 이벤트연결연습</h1>
+<button id = "btn1">이벤트강제발생</button>
+<button id = "btn2">form정보알아내기</button>
+<form id = "myfrm" action="4.jsp">
+아이디<input type = "text" name ="userid" value = "admin">
+비밀번호<input type = "password" name = "userpass" value = "1234">
+<input type = "submit" value ="서버전송">
+</form><hr>
+<div id = "here">여기</div>
+</body>
+</html>

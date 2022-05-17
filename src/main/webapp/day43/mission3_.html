@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<style>
+		body{
+			font-size:9pt;	
+		}
+		
+		div{
+			border: 1px solid #999999;
+			margin:20px;
+			margin-bottom:20px;
+		}
+		div div{
+			border: 1px dotted #CCC;
+			font-size:20px;	
+		}
+		
+	</style>
+	<script>
+		/* window.onload=function(){
+			setInterval( changeImage, 1000);
+		}
+		var f1 = counter(1);
+		function counter(aa){
+			var num =aa;
+			return function(){
+				return (num++%10)+1;
+			};
+		}
+		function changeImage(){
+			 
+			document.querySelector("#img1").src = "images/img"+f1()+".jpg";
+		} */
+		
+		
+		var imgarr = ["muffin.png","img2.jpg","img3.jpg","img4.jpg","img5.jpg","img6.jpg","img7.jpg","img8.jpg","img9.jpg","img10.jpg"];
+		//클로져이용
+		function loop( ){			 
+			var n = -1;
+			return function(){
+				n++;
+				return "images/" + imgarr[n%imgarr.length];
+			}
+		}
+		var next = loop( ); 
+		window.onload=function(){
+			 setInterval(() => {
+					document.querySelector("#img1").setAttribute("src",next());
+				}, 1000);
+		}
+
+	</script> 
+
+</head>
+
+<body>	
+	<div> 
+		<h4>미션3 - 1초에 한번씩 이미지를 순차적으로 변환시켜 주세요.<br> 단, 이미지는 9개가 있습니다. 9개까지 출력된 경우, 다시 첫번째 이미지부터 출력시켜주세요.</h4>
+		<div id="panel">
+			<img id="img1" src="images/img1.jpg" alt="이미지">
+		</div>
+	</div>   
+</body>
+</html>
