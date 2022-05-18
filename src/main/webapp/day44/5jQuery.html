@@ -3,19 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="../JSLib/jquery-3.6.0.min.js"></script>
-<style type="text/css">
-.aa{background-color: lightgreen;}
-.bb{background-color: lightblue;}
-</style>
+<script src="../jslib/jquery-3.6.0.min.js"></script>
+<script>
+   var obj = {"background-color":"orange", color:"blue"};
+   $(function(){
+	   $("#btn1").on("click", f1);
+	   $("#btn2").on("click", f2);
+	   $("#btn3").on("click", f3);
+	   $("#btn4").on("click", f4);
+	   $("#btn5").on("click", f5);
+	   $("#btn6").on("click", f6);
+	   $("#btn7").on("click", f7);
+	   $("#btn8").on("click", f8);
+   });
+   function f1(){
+	   //h1 tag중에 짝수번째만 스타일적용	   
+	   $("h1:even").css(obj);
+   }
+   function f2(){
+	 //h1 tag중에 짝수번째만 스타일적용	   
+	   $("h1").filter(":even").css(obj);
+   }
+   function f3(){
+	   $("h1").filter(function(index){
+		   return index%3==0;
+	   }).css(obj);
+   }
+   function f4(){
+	   $("h1:nth-child(3n+1)").css(obj);
+   }
+   function f5(){
+	   $("h1").filter(function(index){ 
+		   if($(this).html()=="jQuery연습5")
+			   return true;
+		   return false;
+	   }).css(obj);
+   }
+   function f6(){
+	   $("h1").css("border","1px solid gray")
+	     .filter(":even").css("background-color","beige").end()
+	     .filter(":odd").css("color","red");
+   }
+   function f7(){
+	   $("h1").first().css("border","1px solid gray");
+	   $("h1:first").css("background-color","yellow");
+	   
+	   $("h1").last().css("border","1px solid gray");
+	   $("h1:last").css("background-color","yellow");
+	   $("h1").eq(-1).css("color","red");
+	   
+	   $("h1").eq(2).css("color","red");
+	   $("h1").eq(-2).css("color","red");
+	   
+	   
+   }
+   function f8(){
+	   var str = `
+		   <friends>
+		   <friend>
+		      <name>홍길동1</name>
+		      <phone>01012345678</phone>
+		   </friend>
+		   <friend>
+		      <name>홍길동2</name>
+		      <phone>01011111111</phone>
+		   </friend>
+		   <friend>
+		      <name>홍길동3</name>
+		      <phone>01033333333</phone>
+		   </friend>
+		 </friends>
+	   `;
+	   var obj = $.parseXML(str);
+	   console.log(str);
+	   console.log(obj);
+	   $(obj).find("friend").each(function(index){
+		   console.log($(this).find("name").text());
+		   console.log($(this).find("phone").text());
+	   });
+   }
+</script>
+ 
 </head>
-<body>
-	<h1>jquery연습</h1>
-	<button id="btn1">배열</button>
-	<button id="btn2">배열(selector)</button>
-	<button id="btn3">배열(selector)</button>
-	<button id="btn4">object</button>
-	<hr>
-	<div id="here">여기</div>
+<body >
+<h1>jQuery연습1</h1>
+<h1>jQuery연습2</h1>
+<h1>jQuery연습3</h1>
+<h1>jQuery연습4</h1>
+<h1>jQuery연습5</h1>
+<h1>jQuery연습6</h1>
+<h1>jQuery연습7</h1>
+<h1>jQuery연습8</h1>
+<h1>jQuery연습9</h1>
+<button id="btn1">filter1</button>
+<button id="btn2">filter2</button>
+<button id="btn3">filter3</button>
+<button id="btn4">filter4</button>
+<button id="btn5">filter5</button>
+<button id="btn6">체이닝과 end</button>
+<button id="btn7">first,last,eq</button>
+<button id="btn8">xml parsing</button>
+<hr>
+<div id="here">여기</div>
 </body>
 </html>
