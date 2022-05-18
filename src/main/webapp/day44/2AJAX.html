@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+ * XMLHttpRequest : AJAX를 하기위한 객체
+ * AJAX : 비동기통신(= 현재페이지가 이동하지 않고 서버에 요청보내고 받음)에 사용
+ */
+window.onload = function(){
+	btn1.onclick = function(){
+		var xhr = new XMLHttpRequest();
+	 	xhr.open("get", "1Event.html", false) ; //false : 동기
+	 	xhr.send();//서버에 요청보내기
+	 			   //동기방식이면 서버의 응답을 받을 때까지 기다림
+	 	here.innerHTML=xhr.responseText;
+	};
+	btn2.onclick = function(){
+		var xhr = new XMLHttpRequest();
+	 	xhr.open("get", "../day43/mission1_question.html", true) ; //true : 비동기
+	 	xhr.onreadystatechange = function(){
+	 		if(xhr.readyState == 4 && xhr.status ==200){
+	 			//readyState == 4 : 모든 데이터를 받음
+	 			//status ==200 : 요청과 응답이 성공, ex) 500 오류, 404 페이지 없음
+	 			here.innerHTML=xhr.responseText;
+	 		}
+	 	};
+	 	xhr.send();//서버에 요청보내기
+	 			   //비동기방식이면 서버의 응답을 받을 때까지 기다리지 않고 계속 진행함	
+	};
+	btn3.onclick = function(){
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4 && xhr.status ==200){
+				//alert(xhr.responseText);
+				here.innerHTML = xhr.responseText;
+			}
+			
+		};
+		var param = `name=${myname.value}&phone=${myphone.value}`;
+		xhr.open("get", `1.jsp?${param}`);
+		xhr.send();
+		alert("hi");
+	};
+	btn4.onclick = function(){
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4 && xhr.status ==200){
+				//alert(xhr.responseText);
+				here.innerHTML = xhr.responseText;
+				console.log(typeof(xhr.responseText));
+				//String => Object
+				var obj= JSON.parse(xhr.responseText);
+				console.log(obj.name);
+				var output=`<ul>
+								<li>${obj.name}</li>
+								<li>${obj.phone}</li>
+								<li>${obj.address}</li>
+								<li>${obj.age}</li>
+							</ul>`;
+				here.innerHTML += output;
+			}
+		};
+		var param = `name=${myname.value}&phone=${myphone.value}`;
+		xhr.open("get", `2.jsp?${param}`);
+		xhr.send();
+	};
+};
+</script>
+</head>
+<body>
+<h1>AJAX 연습</h1>
+<button id="btn1">AJAX1(동기)</button>
+<button id="btn2">AJAX1(비동기)</button>
+<input type = "text" id = "myname" value="">
+<input type = "text" id = "myphone" value="">
+<button id="btn3">AJAX1(jsp요청 HTML받기)</button>
+<button id="btn4">AJAX1(jsp요청 JSON받기)</button>
+<hr> 
+<div id ="here">여기</div>
+</body>
+</html>
