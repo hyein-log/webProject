@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	// window.onload = function(){
+	// 	alert("aa");
+	// };
+	// window.onload = function(){
+	// 	alert("bb");
+	// };
+	// //$(대상).함수이름(값또는 함수);
+	// $(document).ready(function(){
+	// 	alert("cc");
+	// });
+	// $(document).ready(function(){
+	// 	alert("dd");
+	// });
+	// $(function(){
+	// 	alert("ee");
+	// }); //$() 이렇게만 써도 $(document)과 동일함
+
+	$(function() {
+		$("#btn1").click(function() {
+			$(this).css("border", "1px solid red");
+			//	this.style.border = "10px solid black";
+			$("h1").css("color", "lightgreen"); //h1객체 모두를 받음 selectAll임
+			$("h2").css({
+				"background-color" : "gray",
+				"color" : "pink"
+			});
+			$("#here").css("background-color", "lavender");
+			$(".a").css("color", "skyblue");
+			$("p.aa").css("color", "blue");
+			$("input:text").css("background-color", "green");
+			$("input:button").css("background-color", "navy");
+			var x = $("select > option:selected").val();
+			$("#here").html("<h1>" + x + "</h1>");
+			$("select>option:odd").css("background-color", "hotpink");
+			$("select>option:even").css("background-color", "lightpink");
+
+			$("p:contains('태그')").css("background-color", "beige");
+		});
+		$("#btn2").click(function() {
+			if ($("h1").hasClass("on")) {
+				$("h1").removeClass("on");
+			} else {
+				$("h1").addClass("on")
+			}
+		});
+	});
+</script>
+<style>
+.on {
+	background-color: orange;
+	color: white;
+}
+</style>
+</head>
+<body>
+	<button id="btn1">스타일 변경하기</button>
+	<button id="btn2">스타일 on</button>
+	<button id="btn3">스타일 off</button>
+	<h1>jquery연습</h1>
+	<h1 class="a">jquery연습</h1>
+	<h1>jquery연습</h1>
+	<h2>jquery연습</h2>
+	<div id="here">여기</div>
+	<p>1 태그</p>
+	<p class="a">2</p>
+	<p class="aa">3</p>
+	<p class="a">4 태그</p>
+	<p class="a">5</p>
+	<input>
+	<input type="text">
+	<input type="text">
+	<input type="button" value="버튼">
+	<select>
+		<option>월요일</option>
+		<option>화요일</option>
+		<option selected="selected">수요일</option>
+		<option>목요일</option>
+		<option>금요일</option>
+	</select>
+</body>
+</html>
+

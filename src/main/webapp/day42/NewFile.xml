@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customers>
+	<customer>
+		<name>홍길동</name>
+		<age>20</age>
+	</customer>
+</customers>

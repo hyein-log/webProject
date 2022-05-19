@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../JSLib/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//버튼의 이벤트에 리스너(함수)를 연결
+		$("#btn1").on("click", f1);
+		$("#btn2").on("click", f2);
+		$("#btn3").on("click", f3);
+		$("#btn4").on("click", f4);
+		$("#btn5").on("click", f5);
+		$("#btn6").on("click", f6);
+		$("#btn7").on("click", f7);
+		$("#btn8").on("click", f8);
+	});
+	function f1(){
+		var a = $("img").first().attr("src");
+		$("#here").html(a);
+		
+		var a = document.querySelector("img").src;
+		$("#here").html(a);
+		
+		var a = document.getElementsByTagName("img")[0].src;
+		$("#here").html(a);
+	}
+	function f2(){
+		$("img").first().attr("src","../images/muffin.png");
+	}
+	function f3(){
+		$("img").attr("src",function(index){
+			if(index == 0){
+				return "../images/automobile.svg"; 
+			}
+			return "../images/muffin.png";
+		});
+		$("img").attr("width",function(index){
+			
+			return (index+1)*80;
+		});
+	}
+	function f4(){
+		var obj2 = {"src":"../images/muffin.png","width":100};
+		obj2.src = function(index){if(index == 0){return "../images/automobile.svg"; }
+			return "../images/muffin.png";};
+		obj2.width = function(index){return (index+1)*80;}
+		$("img").attr(obj2);
+	}
+	function f5(){
+		$("img").removeAttr("src");
+	}
+	function f6(){
+		//태그자체지우기
+		$("#here").remove(); //객체 자체를 지움
+	}
+	function f7(){
+		$("#here").empty(); //내용만 지움
+	}
+	function f8(){
+		$("<h1></h1>").text("hello1").appendTo("#here"); //here 안에서 나보다 늦게
+		$("<h1></h1>").text("hello2").prependTo("#here"); //here 안에서 나보다 먼저
+		$("<h1></h1>").text("hello3").insertBefore("#here"); //here가 오기 전에
+		$("<h1></h1>").text("hello4").insertAfter("#here"); //here가 오고 난 후
+		$("<img>").attr({"src":"../images/symbol.gif","width":100}).appendTo("#here");
+	}
+</script>
+</head>
+<body>
+
+	<button id="btn1">속성얻기</button>
+	<button id="btn2">속성변경</button>
+	<button id="btn3">속성변경(함수)</button>
+	<button id="btn4">속성변경(object)</button>
+	<button id="btn5">속성제거</button>
+	<button id="btn6">객체 remove</button>
+	<button id="btn7">empty</button>
+	<button id="btn8">객체생성</button>
+	<hr>
+	<div id="here">여기</div>
+	<img src="../images/umbrella.jpg">
+	<img alt = "" src="../images/fantasy.jpg">
+	
+</body>
+</html>

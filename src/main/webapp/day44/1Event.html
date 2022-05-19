@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>event연습</title>
+<script type="text/javascript">
+	window.onload = function() {
+		btn2.onclick = function() {
+			alert(this.innerHTML);
+			call();
+		};
+		btn2.onclick = call; //이때는 this가 btn2가 됨
+		btn3.onclick = function() {//btn3는 function을 실행시킴
+			call(); //btn3가 부른 function이 call함수를 실행시킴
+			//이때 call을 window가 부른것이므로 this는 window가됨
+		};
+		myspan.onclick = function(e){
+			alert("span clicked");
+			alert(e);
+			e.stopPropagation(); //이벤트전달막기 internet explorer이외의 브라우저 사용가능
+		};
+		
+		myh1.onclick = function(A){
+			alert(this.innerHTML);
+			A.stopPropagation();
+			
+		};
+		div2.onclick = function(A){
+			alert(this.innerHTML);
+			A.stopPropagation();
+		};
+		div1.onclick = function(A){
+			alert(this.innerHTML);
+		};
+		/*btn4.attachedEvent("onclick", function(ee){
+			alert(this.innerHTML);
+		});*/
+		btn5.addEventListener("click", function(ee){ //이벤트 속성이 아닌 이벤트 이름을 써야함
+			alert(this.innerHTML);
+		}, false);
+	};
+	function call() {
+		alert(this.innerHTML); //함수를 누가 썼느냐에 따라 this가 달라짐. 현재는 window꺼임
+		console.log(this);
+	}
+	function call2() {
+		var a = document.querySelector('input[name = "userid"]').value;
+		if (a != "admin")
+			return false;
+		return true;
+	}
+</script>
+<style>
+div, h1, span {border:1px solid gray; padding:10px;}
+</style>
+</head>
+<body>
+	<h1>Event연습</h1>
+	<button id="btn1" onclick="alert(this.innerHTML);">1.DOM Level1 인라인이벤트</button>
+	<button id="btn2">2.DOM Level1 고전방식</button>
+	<button id="btn3">this가 누구?</button>
+	<button id="btn4">3.DOM Level2..IE이벤트모델 </button>
+	<button id="btn5">4.DOM Level2..*표준이벤트모델* </button>
+	<h2>default event 취소 연습</h2>
+	<form id="myfrm" action= "../day35_web1/2.jsp"
+		onsubmit="return call2();">
+		아이디<input type="text" name="userid" value="admin"> 비밀번호<input
+			type="password" name="userpass" value="1234"> <input
+			type="submit" value="서버전송">
+	</form>
+	<hr>
+	<div id = "div1">
+		<div id = "div2">
+			<h1 id = "myh1">
+				캡처링과 버블링<span id = "myspan">이벤트가 전달된다.</span>
+			</h1>
+		</div>
+	</div>
+</body>
+</html>
