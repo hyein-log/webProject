@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- <script src="../jslib/jquery-3.6.0.min.js"></script> -->
+<script>
+$(function(){
+	//이벤트와 리스너를 연결:on()
+	$("#btn1").on("click", f1);
+	$("#btn2").on("click", f2);
+	var obj = {"mouseenter":function(){
+					$(this).addClass("reverse");
+				},
+			   "mouseleave":function(){
+				   $(this).removeClass("reverse");
+			   }
+			};
+	$("h1").on(obj);
+	$("#here").on(obj);
+	$("#here2").hover(function(){
+		$(this).addClass("reverse");
+	  }, function(){
+		   $(this).removeClass("reverse");
+	});
+	$("#myfrm").on("submit", f3);
+	
+});
+
+function f3(event){
+	var id = $("#userid").val();
+	var pw = $("#userpass").val();
+	alert(id +":" + pw);
+	if(id != "admin") event.preventDefault();//default이벤트제거 
+}
+
+
+function f1(event ){ 
+	$(this).html(function(index, html){
+		return html+"!";
+	});
+	var output = "x=" +event.pageX + " y=" + event.pageY; 
+	$("#here").html(output);
+	
+	//버블링막기, 부모로의 이벤트전달막기 
+	event.stopPropagation();
+}
+function f2(){ }
+</script>
+<style>
+  .reverse { background-color: orange;}
+</style>
+</head>
+<body>
+<h1 >이벤트연습</h1>
+<div onclick="alert('버튼의부모element')">
+    <button id="btn1">이벤트연결</button>
+</div>
+<button id="btn2">이벤트연결</button>
+<hr>
+<form id="myfrm" action="1.jsp" >
+  아이디<input type="text" id="userid"  name="userid" value="admin">
+  비밀번호<input type="password" id="userpass"  name="userpass" value="1234">
+  <input type="submit" value="서버전송">
+</form>
+
+<hr>
+<div id="here">여기</div>
+<div id="here2">여기2</div>
+</body>
+</html>

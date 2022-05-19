@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../JSLib/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//$("#btn1").onclick=f1;
+		$("#btn1").on("click", f1);
+		$("#btn2").on("click", f2);
+		$("#btn3").on("click", f3);
+		$("#btn4").on("click", f4);
+		$("#btn5").on("click", f5);
+	});
+	function f1() {
+		alert("a");
+		var xhr = new XMLHttpRequest();
+		var url = "3Fade.html";
+		xhr.open("get", url);
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState==4 && xhr.status==200)
+				here.innerHTML = xhr.responseText;
+		};
+		xhr.send();
+	}
+	function f2() {
+		$("#here").load("3Fade.html");
+	}
+	function f3() {
+		var param = "userid="+$("#userid2").val()+"&userpass="+$("#userpass2").val();
+		$.get("1.jsp?"+param,function(data, status){
+			$("#here").html(data);
+			$("<h1></h1>").append(status).appendTo("#here");
+		});
+	}
+	function f4() {
+		var paramData = {userid:$("#userid2").val(),"userpass":$("#userpass2").val()};
+		$.post("1.jsp",paramData,function(data, status){
+			$("#here").html(data);
+			$("<h1></h1>").append(status).appendTo("#here");
+		});
+// 		$.post("3Fade.html",function(data, status){
+// 			$("#here").html(data);
+// 			$("<h1></h1>").append(status).appendTo("#here");
+// 		});
+	}
+	function f5() {
+		var paramData = {userid:$("#userid2").val(),"userpass":$("#userpass2").val()};
+		$.ajax({
+			url:"1.jsp",
+			data:paramData,
+			type:"get",
+			success:function(data, status, xhr){
+				$("#here").html(data);
+				$("<h1></h1>").append(status).appendTo("#here");
+			},
+			error:function(xhr, status,error){
+				$("<h1></h1>").append(status).appendTo("#here");
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<button id="btn1">javascript ajax</button>
+	<button id="btn2">jquery ajax(load함수)</button>
+	<button id="btn3">jquery ajax(get함수)</button>
+	<button id="btn4">jquery ajax(post함수)</button>
+	<button id="btn5">jquery ajax(ajax함수)</button>
+	<input type="text" id="userid2" value="admin">
+	<input type="text" id="userpass2" value="admin">
+	<hr>
+	<div id="here">여기</div>
+</body>
+</html>
